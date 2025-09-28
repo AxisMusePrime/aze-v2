@@ -1,20 +1,6 @@
-# Per-file remediation recommendations
 
-Source: frankensynth/pii_scan_results.json and TOP20_SENSITIVE.md
-
-## venv/lib/python3.13/site-packages/pip/_vendor/rich/_emoji_codes.py
-
-Findings summary: {'API_KEY_LIKE': 667}
-
-Notes:
-
-- File is inside virtual environment or vendor packages. Most hits are likely false positives (constants, tokens in docs/code).
-
-Recommended actions (choose after confirming scope):
-
-- No action required by default. Optionally remove venv from repo (recommended) and re-run scan to reduce noise.
-
-
+This per-file remediation document has been moved to `frankensynth/offline_research/PER_FILE_REMEDIATION.md` for hygiene.
+Please inspect the offline copy for details and recommended actions.
 
 ## venv/lib/python3.13/site-packages/pip/_vendor/truststore/_windows.py
 

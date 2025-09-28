@@ -30,14 +30,12 @@ git filter-repo --invert-paths --path frankensynth/
 
 # 3. Remove the specific BTC address occurrences from all remaining files
 # Use an exact-replacement to redact the address from history
-git filter-repo --replace-text <(printf "[REDACTED_BTC_ADDRESS]==[REDACTED_BTC_ADDRESS]\n")
 
 # Note: On macOS, use a temporary file instead of process substitution if your shell doesn't support it:
-# printf "[REDACTED_BTC_ADDRESS]==[REDACTED_BTC_ADDRESS]\n" > /tmp/replacements.txt
 # git filter-repo --replace-text /tmp/replacements.txt
 
 # 4. Verify the mirror: search for the address
-git --no-pager grep -n "[REDACTED_BTC_ADDRESS]" || echo "address removed"
+This runbook was moved to `frankensynth/offline_research/GIT_HISTORY_CLEANUP_RUNBOOK.md` for hygiene. See the offline copy to run the destructive history-cleanup steps.
 
 # 5. If verification passes, push changes back to remote (DANGEROUS: coordinate with team)
 # This will rewrite history on the remote and requires force-push
