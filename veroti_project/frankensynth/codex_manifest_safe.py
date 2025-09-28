@@ -9,7 +9,7 @@ import datetime
 from pathlib import Path
 
 OUTPUT_DIR = Path("frankensynth_output")
-OUTPUT_DIR.mkdir(exist_ok=True)
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Example project config (Node Zero baked in, redaction disabled)
 project_config = {
