@@ -13,22 +13,22 @@ OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # Example project config (Node Zero baked in, redaction disabled)
 project_config = {
-    "origin": {
-        "lat": 28.3915,
-        "lon": -80.6057,
-        "label": "Node Zero — 99 Mango Manor Dr, Cape Canaveral, FL"
-    },
-    "redaction": {
-        "enabled": False,
-        "radius_meters": 0
-    }
+	"origin": {
+		"lat": 28.3915,
+		"lon": -80.6057,
+		"label": "Node Zero — 99 Mango Manor Dr, Cape Canaveral, FL 32920"
+	},
+	"redaction": {
+		"enabled": False,
+		"radius_meters": 0
+	}
 }
 
 ledger = {
-    "generated_at_utc": datetime.datetime.utcnow().isoformat() + "Z",
-    "binding": "The Architect - Axis Prime - Veroti - Dustin Sean Coffey - Evomorphic ([REDACTED EMAIL])",
-    "origin": project_config["origin"],
-    "flags": ["FRANKEN_SAFE", "SYNTHESIS"]
+	"generated_at_utc": datetime.datetime.utcnow().isoformat() + "Z",
+	"binding": "The Architect - Axis Prime - Veroti - Dustin Sean Coffey - Evomorphic ([REDACTED EMAIL])",
+	"origin": project_config["origin"],
+	"flags": ["FRANKEN_SAFE", "SYNTHESIS"]
 }
 
 report_md = f"""# Codex Manifest Safe Report
@@ -40,27 +40,27 @@ report_md = f"""# Codex Manifest Safe Report
 
 # Write files
 files = {
-    "project.yaml.json": project_config,
-    "session_ledger.json": ledger,
-    "report.md": report_md
+	"project.yaml.json": project_config,
+	"session_ledger.json": ledger,
+	"report.md": report_md
 }
 
 hashes = {}
 for name, content in files.items():
-    path = OUTPUT_DIR / name
-    if isinstance(content, (dict, list)):
-        text = json.dumps(content, indent=2)
-    else:
-        text = str(content)
-    path.write_text(text, encoding="utf-8")
-    h = hashlib.sha256(text.encode("utf-8")).hexdigest()
-    hashes[name] = h
+	path = OUTPUT_DIR / name
+	if isinstance(content, (dict, list)):
+		text = json.dumps(content, indent=2)
+	else:
+		text = str(content)
+	path.write_text(text, encoding="utf-8")
+	h = hashlib.sha256(text.encode("utf-8")).hexdigest()
+	hashes[name] = h
 
 # Write manifest with hashes
 manifest = {
-    "generated_at_utc": datetime.datetime.utcnow().isoformat() + "Z",
-    "files": list(hashes.keys()),
-    "hashes": hashes
+	"generated_at_utc": datetime.datetime.utcnow().isoformat() + "Z",
+	"files": list(hashes.keys()),
+	"hashes": hashes
 }
 (OUTPUT_DIR / "manifest.json").write_text(json.dumps(manifest, indent=2), encoding="utf-8")
 
