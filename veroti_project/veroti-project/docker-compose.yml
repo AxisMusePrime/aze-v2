@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  miner:
+    build:
+      context: ./miner
+      dockerfile: Dockerfile.miner
+    ports:
+      - "5000:5000"  # WebSocket server port
+    volumes:
+      - ./miner:/app
+    environment:
+      WCP_DESTINATION_ADDRESS: "[REDACTED_BTC_ADDRESS]"
+
+  veroti-ui:
+    build:
+      context: ./veroti-ui
+      dockerfile: Dockerfile.veroti-ui
+    ports:
+      - "3000:3000"  # React app port
+    volumes:
+      - ./veroti-ui:/app
+    depends_on:
+      - miner
+
+networks:
+  default:
+    driver: bridge

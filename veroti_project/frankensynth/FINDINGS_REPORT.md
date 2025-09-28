@@ -19,12 +19,12 @@ Critical issues (recommended immediate attention)
 These are files that appear to contain private keys, wallet seeds, or real API-like tokens. Treat these as compromised and rotate credentials immediately if they are live.
 
 - docker-compose.yml (project root)
-  - Findings: BTC_BECH32 address: bc1qxzm3juthht9mf9h62ltsgsajdlv6xff00epfhg
+  - Findings: BTC_BECH32 address: [REDACTED_BTC_ADDRESS]
   - Why important: cryptocurrency addresses may indicate wallet usage; if private keys are present elsewhere, funds could be at risk.
   - Recommendation: If this is a public wallet or test data, consider redacting or moving to an offline document. If the corresponding private key exists in repo, remove and rotate.
 
 - run_entylion_conduit.py (project root)
-  - Findings: BTC_BECH32 address: bc1qxzm3juthht9mf9h62ltsgsajdlv6xff00epfhg
+  - Findings: BTC_BECH32 address: [REDACTED_BTC_ADDRESS]
   - Recommendation: review and redact if necessary.
 
 - frankensynth/codex_manifest_safe.py
@@ -32,7 +32,7 @@ These are files that appear to contain private keys, wallet seeds, or real API-l
   - Recommendation: Replace with generic contact placeholder or move to environment variable/config not committed to git.
 
 - veroti-project/docker-compose.yml
-  - Findings: BTC_BECH32 address: bc1qxzm3juthht9mf9h62ltsgsajdlv6xff00epfhg
+  - Findings: BTC_BECH32 address: [REDACTED_BTC_ADDRESS]
 
 - Other notable files (venv and pip vendored packages)
   - Many API_KEY_LIKE and EMAIL hits are inside virtual environment or vendored packages. These are usually safe but noisy.

@@ -7,7 +7,7 @@
       "findings": [
         {
           "type": "BTC_BECH32",
-          "match": "bc1qxzm3juthht9mf9h62ltsgsajdlv6xff00epfhg",
+          "match": "[REDACTED_BTC_ADDRESS]",
           "start": 269,
           "end": 311
         },

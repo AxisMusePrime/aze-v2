@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  miner:
+    build:
+      context: .
+      dockerfile: Dockerfile.miner
+    container_name: axis_moongirl_miner
+    environment:
+      VEROTI_URI: "ws://veroti-ws:6790"
+      BROADCAST_URI: "ws://entylion-ws:6789"
+      WCP_DESTINATION_ADDRESS: "[REDACTED_BTC_ADDRESS]"
+    depends_on:
+      - veroti-ws
+    restart: unless-stopped
+
+  veroti-ws:
+    build:
+      context: .
+      dockerfile: Dockerfile.miner
+    container_name: veroti_ws_relay
+    command: ["python", "veroti_ws_server.py"]
+    ports:
+      - "6790:6790"
+    restart: unless-stopped
+
+  veroti-ui:
+    build:
+      context: ./veroti-ui
+      dockerfile: Dockerfile.veroti-ui
+    container_name: veroti_ui
+    ports:
+      - "5173:5173"
+    depends_on:
+      - veroti-ws
+    restart: unless-stopped
