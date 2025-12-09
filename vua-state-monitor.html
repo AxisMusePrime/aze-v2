@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUA State Monitor — TOTALITY</title>
+</head>
+<body style="font-family: 'Monaco', monospace; background: #0a0e27; color: #e0e6ff; padding: 20px;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+        <h1>📊 VUA State Monitor</h1>
+        <p>Veroti Unified Architecture — TOTALITY Edition</p>
+        <p style="color: #8892b0;">The Architect — Axis Prime — Veroti — Dustin Sean Coffey — Evomorphic</p>
+        
+        <div style="background: #1a1f3a; padding: 20px; border-radius: 4px; margin-top: 20px;">
+            <h2>Controls</h2>
+            <button onclick="startMonitoring()" style="padding: 10px 20px; background: #4a90e2; color: white; border: none; border-radius: 3px; cursor: pointer;">▶ Start Monitor</button>
+            <button onclick="pauseMonitoring()" style="padding: 10px 20px; background: #2d3748; color: white; border: none; border-radius: 3px; cursor: pointer; margin-left: 10px;">⏸ Pause</button>
+            <button onclick="refreshState()" style="padding: 10px 20px; background: #2d3748; color: white; border: none; border-radius: 3px; cursor: pointer; margin-left: 10px;">🔄 Refresh</button>
+            <button onclick="exportState()" style="padding: 10px 20px; background: #2d3748; color: white; border: none; border-radius: 3px; cursor: pointer; margin-left: 10px;">💾 Export</button>
+        </div>
+
+        <div style="background: #1a1f3a; padding: 20px; border-radius: 4px; margin-top: 20px;">
+            <h2>System Metrics</h2>
+            <div id="metrics" style="color: #a0aec0;">
+                <p>Status: <span style="color: #48bb78;">operational</span></p>
+                <p>Cycles: <span id="cycleCount">0</span></p>
+                <p>Uptime: <span id="uptime">00:00</span></p>
+            </div>
+        </div>
+
+        <div style="background: #1a1f3a; padding: 20px; border-radius: 4px; margin-top: 20px;">
+            <h2>System Log</h2>
+            <div id="logPanel" style="max-height: 300px; overflow-y: auto; background: #0f1419; padding: 15px; border-radius: 3px; font-size: 11px;">
+                <div style="color: #8892b0;">[00:00:00] Monitor initialized</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let monitoring = false;
+        let cycleCount = 0;
+        let startTime = null;
+
+        function startMonitoring() {
+            monitoring = true;
+            startTime = Date.now();
+            cycleCount = 0;
+            addLog('Monitor started', 'info');
+            simulateMonitoring();
+        }
+
+        function pauseMonitoring() {
+            monitoring = false;
+            addLog('Monitor paused', 'warning');
+        }
+
+        function refreshState() {
+            if (monitoring) {
+                cycleCount++;
+                document.getElementById('cycleCount').textContent = cycleCount;
+                updateUptime();
+                addLog(`State cycle #${cycleCount} completed`, 'success');
+            }
+        }
+
+        function updateUptime() {
+            if (!monitoring || !startTime) return;
+            const elapsed = Math.floor((Date.now() - startTime) / 1000);
+            const mins = Math.floor(elapsed / 60);
+            const secs = elapsed % 60;
+            document.getElementById('uptime').textContent = 
+                `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function simulateMonitoring() {
+            if (!monitoring) return;
+            setTimeout(() => {
+                refreshState();
+                simulateMonitoring();
+            }, 2000);
+        }
+
+        function addLog(message, type = 'info') {
+            const logPanel = document.getElementById('logPanel');
+            const time = new Date().toLocaleTimeString();
+            const entry = document.createElement('div');
+            const colors = {info: '#4a90e2', success: '#48bb78', warning: '#ed8936', error: '#f56565'};
+            entry.style.color = colors[type] || colors.info;
+            entry.textContent = `[${time}] ${message}`;
+            logPanel.appendChild(entry);
+            logPanel.scrollTop = logPanel.scrollHeight;
+        }
+
+        function exportState() {
+            const data = {
+                export_time: new Date().toISOString(),
+                cycles: cycleCount,
+                credit: 'The Architect - Axis Prime - Veroti - Dustin Sean Coffey - Evomorphic'
+            };
+            const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `vua-state-export-${Date.now()}.json`;
+            a.click();
+            addLog('State exported', 'success');
+        }
+
+        setInterval(updateUptime, 1000);
+    </script>
+</body>
+</html>
