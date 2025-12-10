@@ -1,0 +1,118 @@
+{
+  "evaluated_responses": [
+    {
+      "query_id": 1,
+      "type": "manifest_validation_accuracy",
+      "error": "Manifest not created",
+      "accuracy": false,
+      "manifest_validation_accuracy": 0.0,
+      "reasoning": "Manifest validation failed (expected: pass). Incorrect detection."
+    },
+    {
+      "query_id": 2,
+      "type": "manifest_validation_accuracy",
+      "error": "Manifest not created",
+      "accuracy": false,
+      "manifest_validation_accuracy": 0.0,
+      "reasoning": "Manifest validation failed (expected: pass). Incorrect detection."
+    },
+    {
+      "query_id": 3,
+      "type": "manifest_validation_accuracy",
+      "error": "Manifest not created",
+      "accuracy": false,
+      "manifest_validation_accuracy": 0.0,
+      "reasoning": "Manifest validation failed (expected: pass). Incorrect detection."
+    },
+    {
+      "query_id": 4,
+      "type": "attestation_seal_integrity",
+      "seal_valid": true,
+      "expected": true,
+      "integrity": true,
+      "attestation_seal_integrity": 1.0,
+      "reasoning": "Attestation seal valid (expected: valid). Correct seal integrity detection."
+    },
+    {
+      "query_id": 5,
+      "type": "attestation_seal_integrity",
+      "seal_valid": true,
+      "expected": false,
+      "integrity": false,
+      "attestation_seal_integrity": 0.0,
+      "reasoning": "Attestation seal valid (expected: invalid). Incorrect seal integrity detection."
+    },
+    {
+      "query_id": 6,
+      "type": "event_chain_verification",
+      "chain_valid": true,
+      "expected": true,
+      "verification": true,
+      "event_chain_verification": 1.0,
+      "reasoning": "Event chain valid (expected: valid). Correct chain integrity verification."
+    },
+    {
+      "query_id": 7,
+      "type": "event_chain_verification",
+      "chain_valid": true,
+      "expected": false,
+      "verification": false,
+      "event_chain_verification": 0.0,
+      "reasoning": "Event chain valid (expected: invalid). Incorrect chain integrity verification."
+    },
+    {
+      "query_id": 8,
+      "type": "manifest_validation_accuracy",
+      "error": "Manifest not created",
+      "accuracy": false,
+      "manifest_validation_accuracy": 0.0,
+      "reasoning": "Manifest validation failed (expected: pass). Incorrect detection."
+    },
+    {
+      "query_id": 9,
+      "type": "attestation_seal_integrity",
+      "seal_valid": true,
+      "expected": true,
+      "integrity": true,
+      "attestation_seal_integrity": 1.0,
+      "reasoning": "Attestation seal valid (expected: valid). Correct seal integrity detection."
+    },
+    {
+      "query_id": 10,
+      "type": "event_chain_verification",
+      "chain_valid": true,
+      "expected": true,
+      "verification": true,
+      "event_chain_verification": 1.0,
+      "reasoning": "Event chain valid (expected: valid). Correct chain integrity verification."
+    }
+  ],
+  "aggregate_metrics": {
+    "manifest_validation_accuracy": {
+      "count": 4,
+      "average": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "pass_rate": 0.0
+    },
+    "attestation_seal_integrity": {
+      "count": 3,
+      "average": 0.6666666666666666,
+      "min": 0.0,
+      "max": 1.0,
+      "pass_rate": 66.66666666666666
+    },
+    "event_chain_verification": {
+      "count": 3,
+      "average": 0.6666666666666666,
+      "min": 0.0,
+      "max": 1.0,
+      "pass_rate": 66.66666666666666
+    },
+    "overall": {
+      "total_evaluated": 10,
+      "overall_average": 0.4
+    }
+  },
+  "total_responses": 10
+}

@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: VUA TOTALITY minimal AWS SAM template for webhook and static hosting
+
+Resources:
+  PaymentsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: payments.app.app
+      Runtime: python3.10
+      CodeUri: .
+      Events:
+        WebhookApi:
+          Type: Api
+          Properties:
+            Path: /webhook
+            Method: post
+
+  StaticSiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      AccessControl: PublicRead

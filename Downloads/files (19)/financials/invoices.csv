@@ -1,0 +1,3 @@
+invoice_number,date,client,description,amount,status
+INVOICE-0001,2025-12-02,Client A,"Project setup & deployment",1500.00,unpaid
+INVOICE-0002,2025-12-02,Client A,"Monthly support",300.00,unpaid

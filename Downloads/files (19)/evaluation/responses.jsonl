@@ -1,0 +1,10 @@
+{"query_id": 1, "type": "manifest_validation_accuracy", "error": "Manifest not created", "accuracy": false}
+{"query_id": 2, "type": "manifest_validation_accuracy", "error": "Manifest not created", "accuracy": false}
+{"query_id": 3, "type": "manifest_validation_accuracy", "error": "Manifest not created", "accuracy": false}
+{"query_id": 4, "type": "attestation_seal_integrity", "seal_valid": true, "expected": true, "integrity": true}
+{"query_id": 5, "type": "attestation_seal_integrity", "seal_valid": true, "expected": false, "integrity": false}
+{"query_id": 6, "type": "event_chain_verification", "chain_valid": true, "expected": true, "verification": true}
+{"query_id": 7, "type": "event_chain_verification", "chain_valid": true, "expected": false, "verification": false}
+{"query_id": 8, "type": "manifest_validation_accuracy", "error": "Manifest not created", "accuracy": false}
+{"query_id": 9, "type": "attestation_seal_integrity", "seal_valid": true, "expected": true, "integrity": true}
+{"query_id": 10, "type": "event_chain_verification", "chain_valid": true, "expected": true, "verification": true}

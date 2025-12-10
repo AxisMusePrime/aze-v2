@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>VUA Checkout</title>
+    <script src="https://js.stripe.com/v3/"></script>
+  </head>
+  <body>
+    <h1>VUA Checkout</h1>
+    <button id="checkout">Pay $12.00</button>
+
+    <script>
+      document.getElementById('checkout').addEventListener('click', async () => {
+        const resp = await fetch('/create-checkout-session', { method: 'POST' });
+        const data = await resp.json();
+        if (data.url) {
+          window.location = data.url;
+        } else {
+          alert('Failed to create checkout session');
+        }
+      });
+    </script>
+  </body>
+</html>

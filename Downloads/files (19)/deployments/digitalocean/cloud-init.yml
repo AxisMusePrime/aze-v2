@@ -1,0 +1,13 @@
+#cloud-config
+hostname: vua-totality
+package_update: true
+packages:
+  - python3
+  - python3-venv
+  - nginx
+
+runcmd:
+  - [ sh, -lc, 'python3 -m venv /opt/vua-venv' ]
+  - [ sh, -lc, '/opt/vua-venv/bin/pip install --upgrade pip' ]
+  - [ sh, -lc, '/opt/vua-venv/bin/pip install -r /home/vagrant/requirements.txt || true' ]
+  - [ sh, -lc, 'systemctl restart nginx' ]

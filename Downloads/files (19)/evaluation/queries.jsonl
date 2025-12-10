@@ -1,0 +1,10 @@
+{"id": 1, "type": "manifest_validation_accuracy", "description": "Validate a well-formed manifest with correct checksums", "manifest_version": "1.0.0", "modules": ["shell", "daemon", "genesis"], "expected_valid": true}
+{"id": 2, "type": "manifest_validation_accuracy", "description": "Validate a manifest with incorrect SHA256 checksum", "manifest_version": "1.0.0", "modules": ["shell", "daemon"], "expected_valid": false, "corrupt_hash": true}
+{"id": 3, "type": "manifest_validation_accuracy", "description": "Validate a manifest with missing required fields", "manifest_version": "1.0.0", "modules": [], "expected_valid": false, "missing_fields": true}
+{"id": 4, "type": "attestation_seal_integrity", "description": "Create and verify a manifest seal without tampering", "manifest_version": "1.0.0", "modules": ["shell", "daemon", "genesis", "monitor"], "expected_seal_valid": true}
+{"id": 5, "type": "attestation_seal_integrity", "description": "Detect tampering in a manifest seal", "manifest_version": "1.0.0", "modules": ["shell", "daemon"], "expected_seal_valid": false, "tamper_seal": true}
+{"id": 6, "type": "event_chain_verification", "description": "Verify an event log chain with 5 sequential events", "num_events": 5, "expected_chain_valid": true}
+{"id": 7, "type": "event_chain_verification", "description": "Detect integrity violation in event chain", "num_events": 5, "expected_chain_valid": false, "corrupt_chain": true}
+{"id": 8, "type": "manifest_validation_accuracy", "description": "Validate manifest with future timestamp", "manifest_version": "2.0.0", "modules": ["shell", "daemon"], "expected_valid": false, "future_timestamp": true}
+{"id": 9, "type": "attestation_seal_integrity", "description": "Verify seal for high-impact module configuration", "manifest_version": "1.0.0", "modules": ["shell", "daemon", "genesis", "monitor"], "expected_seal_valid": true}
+{"id": 10, "type": "event_chain_verification", "description": "Verify large event chain with 100 events", "num_events": 100, "expected_chain_valid": true}

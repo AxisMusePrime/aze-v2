@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: vua-control
+    env: python
+    plan: starter
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn payments.app:app --bind 0.0.0.0:$PORT"
+
+  - type: worker
+    name: vua-worker
+    env: python
+    plan: starter
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python vua-core.py demo"

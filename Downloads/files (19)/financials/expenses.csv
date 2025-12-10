@@ -1,0 +1,4 @@
+description,date,amount,category,notes
+"Domain registration",2025-12-01,12.00,Hosting,"example.com first-year"
+"Initial setup (contractor)",2025-12-01,750.00,Professional Services,"Onboarding & server configuration"
+"Monthly VPS",2025-12-01,5.00,Hosting,"Small VPS for Python tasks"
