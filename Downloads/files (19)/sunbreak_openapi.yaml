@@ -1,0 +1,154 @@
+openapi: 3.0.3
+info:
+  title: SunBreak Protocol API
+  version: v1
+  description: OpenAPI spec for SunBreak endpoints integrated into DataValid
+paths:
+  /sunbreak/v1/submit:
+    post:
+      summary: Submit a SunBreak envelope
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Envelope'
+      responses:
+        '202':
+          description: Receipt
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Receipt'
+        '401':
+          description: Unauthorized
+  /sunbreak/v1/verify:
+    post:
+      summary: Verify an envelope without persisting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Envelope'
+      responses:
+        '200':
+          description: Verification result
+  /sunbreak/v1/receipt/{receipt_id}:
+  /sunbreak/v1/status/{message_id}:
+    get:
+      parameters:
+        - name: message_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Status
+  /sunbreak/v1/receipt/{receipt_id}:
+    get:
+      parameters:
+        - name: receipt_id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Receipt
+components:
+  schemas:
+    Envelope:
+      type: object
+      properties:
+        version:
+          type: string
+        message_id:
+          type: string
+        timestamp:
+          type: string
+        ttl_seconds:
+          type: integer
+        nonce:
+          type: string
+        sender_id:
+          type: string
+        recipient_id:
+          type: string
+        payload:
+          type: object
+          description: |
+            Application payload. For validation requests include a `request_type: validate` and a `dataset` structure matching the DataValid API dataset format.
+        payload_hash:
+          type: string
+    Receipt:
+      type: object
+      properties:
+        receipt_id:
+          type: string
+        message_id:
+          type: string
+        received_at:
+          type: string
+        payload_hash:
+          type: string
+        chain_hash:
+          type: string
+        status:
+          type: string
+        server_id:
+          type: string
+        validation_summary:
+          type: object
+          properties:
+            assessment_id:
+              type: string
+            overall_quality:
+              type: number
+
+    ValidationReport:
+      type: object
+      properties:
+        assessment_id:
+          type: string
+        overall_quality:
+          type: number
+        quality_scores:
+          type: object
+        compliance_scores:
+          type: object
+securitySchemes:
+  ApiKeyAuth:
+    type: apiKey
+    in: header
+    name: X-API-Key
+
+security:
+- ApiKeyAuth: []
+
+paths:
+  /sunbreak/v1/verify:
+    post:
+      summary: Verify an envelope without persisting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Envelope'
+      responses:
+        '200':
+          description: Verification result
+  /sunbreak/v1/keys:
+    get:
+      summary: Public keys
+      responses:
+        '200':
+          description: Key list
+  /sunbreak/v1/health:
+    get:
+      summary: Health check for SunBreak gateway
+      responses:
+        '200':
+          description: Health status
